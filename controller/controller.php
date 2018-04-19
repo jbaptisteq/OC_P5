@@ -1,13 +1,13 @@
 <?php
 
-// Chargement des classes
+// Load class
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/UserManager.php');
 
 function listSummaries()
 {
-    $postManager = new \model\PostManager(); // Create Object
+    $postManager = new \Model\PostManager(); // Create Object
     $summaries = $postManager->getLastSummaries(); // Call summaries from Object $postManager
 
     require('view/listSummaries.php');
