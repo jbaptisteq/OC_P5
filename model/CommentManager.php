@@ -2,7 +2,7 @@
 
 namespace P5jbq\Blog\Model;
 
-require_once("model/Manager.php"); // Call for DB Connexion
+require_once("../model/Manager.php"); // Call for DB Connexion
 
 class CommentManager extends Manager
 {
