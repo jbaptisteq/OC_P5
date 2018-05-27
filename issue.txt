@@ -1,0 +1,22 @@
+Issue #5 Display Unique Article View
+
+Besoin fonctionnel :
+- Afficher l'article demandé sous le format suivant
+    . Titre
+    . Auteur - Date de publication
+    . Contenu de l'Article
+    . Commentaires de l'article
+    . Formulaire pour ajouter un commentaire
+- L'administrateur doit avoir la possibilité de modifier l'article en cliquant sur un lien en dessous du titre
+
+Découpage technique :
+- Récupérer l'id de l'article passé en paramètre GET : $_GET['id']
+- Récupérer les informations de l'article en base de donnée :
+    . Table : post
+    . Données à récupérer : title, content, post_date, user_id
+- Récupérer les commentaires authorisés de l'article :
+    . Table : comment
+    . Foreign Key : post_id
+    . Contrainte : authorized = 1
+    . Données à récupérer : content, comment_date, author
+- Formater les post_date et comment_date en format Français : dd-mm-YYYY
