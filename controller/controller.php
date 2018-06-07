@@ -63,8 +63,58 @@ function newComment($idArticle, $authorComment, $content)
     if ($newComment === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
-    else
-    {
+}
 
+function newArticle($userId, $articleTitle, $articleContent)
+{
+    $postManager = new Model\PostManager();
+    $newArticle = $postManager->postArticle($userId, $articleTitle, $articleContent);
+
+    if($newArticle === false){
+        throw new Exception ("Impossible d'ajouter l'article !");
+    }
+}
+
+function checkUsername($username)
+{
+    $manager = new Model\UserManager();
+    $username_exist = $manager->checkUsername($username);
+
+    return $username_exist;
+}
+
+function newUser($username, $password, $email)
+{
+    $userManager = new Model\UserManager();
+    $newUser = $userManager->newUser($username, $password, $email);
+
+    if ($newUser === false) {
+        throw new Exception ("Impossible d'ajouter l'utilisateur !");
+    }
+}
+
+function loginInfo($username)
+{
+    $userManager = new Model\UserManager();
+    $loginInfo = $userManager->loginInfo($username);
+
+    return $loginInfo;
+}
+
+function getPassHash($username)
+{
+    $userManager = new Model\UserManager();
+    $getPassHash = $userManager->getPassHash($username);
+
+    return $getPassHash;
+}
+
+function updateArticle($updateTitle, $updateContent, $idArticle)
+{
+    $postManager = new Model\PostManager();
+    $updateArticle = $postManager->updateArticle($updateTitle, $updateContent, $idArticle);
+
+    if ($updateArticle === false) {
+        throw new Exception ("Impossible d'éditer l'article !");
     }
 }

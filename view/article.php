@@ -40,7 +40,7 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <p><?= isset($article['content'])? nl2br(htmlspecialchars($article['content'])) : 'void' ?></p>
+                <p><?= isset($article['content'])? nl2br($article['content']) : 'void' ?></p>
             </div>
         </div>
         <div class="row"></br></br>
@@ -48,9 +48,10 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                 <?php
                 foreach ($comments AS $comment) :
                     if ($comment['authorized'] == 1)
-                    {?>
-                        <p class="col-md-12">le <?=isset($comment['comment_date'])? $comment['comment_date']: 'inconnu'?> par <?= isset($comment['author'])? $comment['author']: 'inconnu'?></p>
-                        <p class="col-md-12"><?= isset($comment['content'])? nl2br(htmlspecialchars($comment['content'])) : 'Aucun contenu'?></p>
+                    {?><strong>
+                            <p class="col-md-12">le <?=isset($comment['comment_date'])? $comment['comment_date']: 'inconnu'?> par <?= isset($comment['author'])? $comment['author']: 'inconnu'?></p>
+                        </strong>
+                        <p class="col-md-12 border-divider"><?= isset($comment['content'])? nl2br(htmlspecialchars($comment['content'])) : 'Aucun contenu'?></p>
                     <?php }
                 endforeach; ?>
             </div>
@@ -60,6 +61,7 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                         <label for="author">Auteur</label><br />
                         <input type="text" id="authorComment" name="authorComment" />
                     </div>
+                    </br>
                     <div>
                         <label for="content">Commentaire</label><br />
                         <textarea id="content" class="form-control" name="content" rows="10"></textarea>
@@ -72,7 +74,7 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                             if (!empty($_POST['authorComment']) && !empty($_POST['content']))
                             {
                                 newComment($_GET['id'], $_POST['authorComment'], $_POST['content']);
-                            }                            
+                            }
                         }
                         else
                         {

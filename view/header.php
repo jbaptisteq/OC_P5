@@ -38,7 +38,12 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+    <script>
+  tinymce.init({
+    selector: '#articleContent'
+  });
+  </script>
 
 </head>
 
@@ -79,17 +84,3 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-text">
-                        <span class="name">Blog</span>
-                        <hr class="star-primary">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>

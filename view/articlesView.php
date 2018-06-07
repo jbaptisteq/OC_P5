@@ -27,7 +27,7 @@ foreach ($articles AS $article) :
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <p><?= isset($article['content'])? nl2br(htmlspecialchars($shortContent)).'...'.'<a href="article.php?id='.$article['id'].'">Lire en entier</a>' : 'void' ?></p>
+                    <p><?= isset($article['content'])? nl2br($shortContent).'...'.'<a href="article.php?id='.$article['id'].'">Lire en entier</a>' : 'void' ?></p>
                 </div>
             </div>
         </div>
