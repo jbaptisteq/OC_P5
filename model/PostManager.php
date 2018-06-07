@@ -45,7 +45,7 @@ class PostManager extends Manager
     public function listArticles()
     {
         $db = $this->dbConnect();
-        $req = $db->query("SELECT post.id, post.user_id, post.title, post.content, DATE_FORMAT(post.post_date, '%d-%m-%Y à %Hh%i') AS post_date, user.username FROM post, user WHERE post.user_id = user.id ORDER BY post_date DESC");
+        $req = $db->query("SELECT post.id, post.user_id, post.title, post.content, DATE_FORMAT(post.post_date, '%d-%m-%Y à %Hh%i') AS post_date, user.username FROM post, user WHERE post.user_id = user.id ORDER BY post.post_date DESC");
         $req->execute();
         $articles = $req->fetchAll();
 
@@ -65,25 +65,29 @@ class PostManager extends Manager
     public function postComment($idArticle, $authorComment, $content)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO comment(post_id, author, content, comment_date, authorized) VALUES(?, ?, ?, NOW(), 0)');
+        $req = $db->prepare('INSERT INTO comment (post_id, author, content, comment_date, authorized) VALUES(?, ?, ?, NOW(), 0)');
         $newComment = $req->execute(array($idArticle, $authorComment, $content));
 
         return $newComment;
     }
 
-    public function postArticle($userId, $title, $content)
+    public function postArticle($userId, $articleTitle, $articleContent)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO post (user_id, title, content, post_date) VALUES (?, ?, ?, NOW())');
-        $req->execute(array($userId, $title, $content));
+        $newArticle = $req->execute(array($userId, $articleTitle, $articleContent));
+
+        return $newArticle;
     }
 
-    public function editArticle($postId, $newContent)
+    public function updateArticle($updateTitle, $updateContent, $idArticle)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE post SET content = ?, edit_date = NOW() WHERE id = ?');
-        $req->execute(array($newContent, $postId));
-
-        return $this->showArticle($postId);
+        $req = $db->prepare('UPDATE post SET title = :title, content = :content, edit_date = NOW() WHERE id = :id');
+        $req->execute([
+                "title" => $updateTitle,
+                "content" => $updateContent,
+                "id" => $idArticle
+        ]);
     }
 }

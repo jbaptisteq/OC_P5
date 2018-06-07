@@ -211,6 +211,11 @@ section.success {
     padding-right: 10%;
     color: black;
 }
+.border-divider{
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 25px;
+}
+
 #portfolio{
     background: #18BC9C;
     color: white;
