@@ -13,6 +13,12 @@ include("../view/header.php");
                     <input type="submit" value="Déconnexion" name= "deconnect" id="button"/>
                 </form>
             </div>
+            <div class="col-lg-6 text-center">
+                text1
+            </div>
+            <div class="col-lg-6 text-center">
+                text2
+            </div>
         </div>
     </div>
 </section>
@@ -36,6 +42,7 @@ else
     if ($isPasswordCorrect) {
         $_SESSION['user_id'] = $loginInfo['id'];
         $_SESSION['username'] = $username;
+        $_SESSION['validated'] = $loginInfo['validated'];
         echo 'Vous êtes connecté !';
         // $passhash = getPassHash($username);
     }
