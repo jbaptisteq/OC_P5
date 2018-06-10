@@ -50,7 +50,7 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                 foreach ($comments AS $comment) :
                     if ($comment['authorized'] == 1)
                     {?><strong>
-                        <p class="col-md-12">le <?=isset($comment['comment_date'])? $comment['comment_date']: 'inconnu'?> par <?= isset($comment['author'])? $comment['author']: 'inconnu'?></p>
+                        <p class="col-md-12">le <?= isset($comment['comment_date'])? $comment['comment_date']: 'inconnu'?> par <?= isset($comment['author'])? $comment['author']: 'inconnu'?></p>
                     </strong>
                     <p class="col-md-12 border-divider"><?= isset($comment['content'])? nl2br(htmlspecialchars($comment['content'])) : 'Aucun contenu'?></p>
                 <?php }
@@ -72,13 +72,10 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
             </div>
             <?php
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['authorComment']) && !empty($_POST['content']))
-                {
+                if (!empty($_POST['authorComment']) && !empty($_POST['content'])) {
                     newComment($_GET['id'], $_POST['authorComment'], $_POST['content']);
                 }
-            }
-            else
-            {
+            } else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
             ?>
