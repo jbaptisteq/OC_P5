@@ -37,7 +37,7 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                 <h1><?= isset($article['title'])? htmlspecialchars($article['title']) :'titre' ?></h1>
             </div>
             <p class="text-center">le <?= isset($article['post_date'])? $article['post_date']: '' ?> par <?= isset($author['username'])? $author['username'] : 'inconnu' ?></p>
-            <p class="text-center"><?php  if($_SESSION['validated'] == 1) { echo '<a href="editArticle.php?id='.$article['id'].'">Editer</a>';} ?></p>
+            <p class="text-center"><?= $_SESSION['validated'] == 1 ? '<a href="editArticle.php?id='.$article['id'].'">Editer</a>' : '' ?></p>
         </div>
         <div class="row">
             <div class="col-lg-12">
