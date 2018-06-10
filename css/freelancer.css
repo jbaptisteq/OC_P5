@@ -335,6 +335,13 @@ footer .footer-below {
     padding: 25px 0;
     background-color: #233140;
 }
+footer a {
+    color: white;
+}
+
+footer a:hover{
+    text-decoration: none;
+}
 .btn-outline {
     color: white;
     font-size: 20px;

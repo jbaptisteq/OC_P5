@@ -27,7 +27,7 @@ class UserManager extends Manager
     public function  loginInfo($username)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id, password FROM user WHERE username = '$username' ");
+        $req = $db->prepare("SELECT id, password, validated FROM user WHERE username = '$username' ");
         $req->execute(array('username' => $username));
         $loginInfo = $req->fetch();
 

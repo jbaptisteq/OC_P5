@@ -4,12 +4,12 @@
     <div class="footer-above">
         <div class="container">
             <div class="row">
-                <div class="footer-col col-md-6" style="color: orange">
-                    <h3>Debug</h3>
+                <div class="footer-col col-md-6">
+                    <h3>Coordonnées</h3>
                     <pre><?php print_r($_SESSION['debug']) ?></pre>
                 </div>
-                <div class="footer-col col-md-6" style="color: red">
-                    <h3>Errors</h3>
+                <div class="footer-col col-md-6">
+                    <h3>Divers</h3>
                     <pre><?php print_r($_SESSION['error']) ?></pre>
                 </div>
             </div>
@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2016
+                        Copyright &copy; Your Website 2016 - <a href="connexion.php" class="admin-link">Administration</a>
                     </div>
                 </div>
             </div>

@@ -37,6 +37,7 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                 <h1><?= isset($article['title'])? htmlspecialchars($article['title']) :'titre' ?></h1>
             </div>
             <p class="text-center">le <?= isset($article['post_date'])? $article['post_date']: '' ?> par <?= isset($author['username'])? $author['username'] : 'inconnu' ?></p>
+            <p class="text-center"><?php  if($_SESSION['validated'] == 1) { echo '<a href="editArticle.php?id='.$article['id'].'">Editer</a>';} ?></p>
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -49,42 +50,42 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                 foreach ($comments AS $comment) :
                     if ($comment['authorized'] == 1)
                     {?><strong>
-                            <p class="col-md-12">le <?=isset($comment['comment_date'])? $comment['comment_date']: 'inconnu'?> par <?= isset($comment['author'])? $comment['author']: 'inconnu'?></p>
-                        </strong>
-                        <p class="col-md-12 border-divider"><?= isset($comment['content'])? nl2br(htmlspecialchars($comment['content'])) : 'Aucun contenu'?></p>
-                    <?php }
-                endforeach; ?>
-            </div>
-            <div class="col-lq-12 comments">
-                <form method="post" class="text-center form-group" action="article.php?action=addComment&amp;id=<?= $article['id'] ?>" method="post">
-                    <div>
-                        <label for="author">Auteur</label><br />
-                        <input type="text" id="authorComment" name="authorComment" />
-                    </div>
-                    </br>
-                    <div>
-                        <label for="content">Commentaire</label><br />
-                        <textarea id="content" class="form-control" name="content" rows="10"></textarea>
-                    </div></br>
-                    <div>
-                        <input type="submit" />
-                    </div>
-                    <?php
-                        if (isset($_GET['id']) && $_GET['id'] > 0) {
-                            if (!empty($_POST['authorComment']) && !empty($_POST['content']))
-                            {
-                                newComment($_GET['id'], $_POST['authorComment'], $_POST['content']);
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception('Aucun identifiant de billet envoyé');
-                        }
-                    ?>
-                </form>
-            </div>
+                        <p class="col-md-12">le <?=isset($comment['comment_date'])? $comment['comment_date']: 'inconnu'?> par <?= isset($comment['author'])? $comment['author']: 'inconnu'?></p>
+                    </strong>
+                    <p class="col-md-12 border-divider"><?= isset($comment['content'])? nl2br(htmlspecialchars($comment['content'])) : 'Aucun contenu'?></p>
+                <?php }
+            endforeach; ?>
         </div>
+        <div class="col-lq-12 comments">
+            <form method="post" class="text-center form-group" action="article.php?action=addComment&amp;id=<?= $article['id'] ?>" method="post">
+                <div>
+                    <label for="author">Auteur</label><br />
+                    <input type="text" id="authorComment" name="authorComment" />
+                </div>
+            </br>
+            <div>
+                <label for="content">Commentaire</label><br />
+                <textarea id="content" class="form-control" name="content" rows="10"></textarea>
+            </div></br>
+            <div>
+                <input type="submit" />
+            </div>
+            <?php
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                if (!empty($_POST['authorComment']) && !empty($_POST['content']))
+                {
+                    newComment($_GET['id'], $_POST['authorComment'], $_POST['content']);
+                }
+            }
+            else
+            {
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+            ?>
+        </form>
     </div>
+</div>
+</div>
 </section>
 
 <!--
