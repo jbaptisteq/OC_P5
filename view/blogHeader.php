@@ -1,11 +1,7 @@
 <?php
-    session_start();
-    // Uncomment lines to reset debugging and|or error session
-    // $_SESSION['error'] = [];
-    // $_SESSION['debug'] = [];
-    if (!isset($title)) {
-        $title = 'Jean-Baptiste Queralt - Développeur PHP';
-    }
+if (!isset($title)) {
+    $title = 'Jean-Baptiste Queralt - Développeur PHP';
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +48,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">Jean-Baptiste Queralt</a>
+                <a class="navbar-brand" href="index.php">Jean-Baptiste Queralt</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,7 +58,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#">Blog</a>
+                        <a href="articlesView.php">Blog</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#portfolio">Portfolio</a>

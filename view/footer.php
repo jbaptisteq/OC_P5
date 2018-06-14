@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="footer-col col-md-6">
                     <h3>Coordonnées</h3>
-                    <pre><?php print_r($_SESSION['debug']) ?></pre>
+
                 </div>
                 <div class="footer-col col-md-6">
                     <h3>Divers</h3>
-                    <pre><?php print_r($_SESSION['error']) ?></pre>
+                    <?php var_dump($_SESSION); ?>
                 </div>
             </div>
         </div>
@@ -42,11 +42,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
     <script>
-        $(document).ready(function() {
-            tinymce.init({
-                selector: '#articleContent'
-            });
+    $(document).ready(function() {
+        tinymce.init({
+            selector: '#articleContent'
         });
+    });
     </script>
 </body>
 

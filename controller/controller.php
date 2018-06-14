@@ -1,6 +1,4 @@
 <?php
-
-session_start();
 // Load class
 require_once('../model/PostManager.php');
 require_once('../model/CommentManager.php');
@@ -116,5 +114,41 @@ function updateArticle($updateTitle, $updateContent, $idArticle)
 
     if ($updateArticle === false) {
         throw new Exception ("Impossible d'éditer l'article !");
+    }
+}
+
+function listComments()
+{
+    $commentManager = new Model\CommentManager();
+    $listComments = $commentManager->listComments();
+
+    return $listComments;
+}
+
+function authorizedComment($idComment)
+{
+    $commentManager = new Model\CommentManager();
+    $authorizedComment = $commentManager->authorizedComment($idComment);
+
+    if ($authorizedComment === false) {
+        throw new Exception ("Impossible de Valider le Commentaire !");
+    }
+}
+
+function showComment($idComment)
+{
+    $commentManager = new Model\CommentManager();
+    $comment = $commentManager->showComment($idComment);
+
+    return $comment;
+}
+
+function deleteComment($idComment)
+{
+    $commentManager = new Model\CommentManager();
+    $deleteComment = $commentManager->deleteComment($idComment);
+
+    if ($deleteComment === false) {
+        throw new Exception ("Impossible de Supprimer le Commentaire !");
     }
 }

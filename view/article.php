@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('../controller/controller.php');
 
 error_log('$_GET id recup : '.$_GET['id']);
@@ -7,19 +8,6 @@ $author = getAuthor($_GET['id']);
 error_log('Article recup');
 $comments = getComments($_GET['id']);
 error_log('Commentaires recup');
-
-// TODO : Retrieve comments for reauested Article : comment.post_id = $article['id']
-
-/* Echelle :
-Vue article.php
-$comments = getComments($article['id'])
-Controller.php
-PostManager->getComments($idArticle)
--> return array comments
-PostManager.php
-function getComments($idArticle)
--> return array comments
-*/
 
 $title = "Lecture de l'article";
 include("../view/blogHeader.php");
@@ -37,7 +25,7 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                 <h1><?= isset($article['title'])? htmlspecialchars($article['title']) :'titre' ?></h1>
             </div>
             <p class="text-center">le <?= isset($article['post_date'])? $article['post_date']: '' ?> par <?= isset($author['username'])? $author['username'] : 'inconnu' ?></p>
-            <p class="text-center"><?= $_SESSION['validated'] == 1 ? '<a href="editArticle.php?id='.$article['id'].'">Editer</a>' : '' ?></p>
+            <p class="text-center"><?= isset($_SESSION['validated'])? ($_SESSION['validated'] === 1 ? '<a href="editArticle.php?id='.$article['id'].'">Editer</a>' : '') : '' ?></p>
         </div>
         <div class="row">
             <div class="col-lg-12">
