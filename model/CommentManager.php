@@ -6,29 +6,34 @@ require_once("../model/Manager.php"); // Call for DB Connexion
 
 class CommentManager extends Manager
 {
-    public function getComments($postId)
+    public function listComments()
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, author, content, DATE_FORMAT(comment_date, "%d/%m/%Y à %Hh%imin%ss") FROM comment WHERE post_id = ? AND autorized = TRUE ORDER BY comment_date DESC');
-        $req->execute(array($postId));
-        $comments = $req->fetchAll();
+        $req = $db->query("SELECT id, author, content, comment_date FROM comment WHERE authorized = 0 ORDER BY id ASC");
+        $req->execute();
+        $listComments = $req->fetchAll();
 
-        return $comments;
+        return $listComments;
     }
-
-    public function postComment($postId, $author, $content)
+    public function authorizedComment($idComment)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO comment(post_id, author, content, comment_date) VALUES(?, ?, ?, NOW())');
-        $req->execute(array($postId, $author, $comment));
-
-        return $this->getComments($postId);
+        $req = $db->prepare('UPDATE comment SET authorized = 1 WHERE id = ?');
+        $req->execute(array($idComment));
     }
-
-    public function autorizedComment($commentId)
+    public function deleteComment($idComment)
     {
         $db = $this->dbConnect();
-        $db->query('UPDATE comment SET autorized = TRUE WHERE comment_id = '.$commentId);
+        $req = $db->prepare('DELETE FROM comment WHERE id = ?');
+        $req->execute(array($idComment));
     }
+    public function showComment($idComment)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("SELECT id, author, content FROM comment WHERE id = ?");
+        $req->execute(array($idComment));
+        $comment = $req->fetch();
 
+        return $comment;
+    }
 }

@@ -49,6 +49,7 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                         <input type="submit" />
                     </div>
                 </form>
+                <p><a href="adminPanel.php" class="return_index">Retour à l'administration</a></p>
             </div>
         </div>
     </div>
