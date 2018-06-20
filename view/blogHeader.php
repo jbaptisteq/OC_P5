@@ -61,13 +61,10 @@ if (!isset($title)) {
                         <a href="articlesView.php">Blog</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#portfolio">Portfolio</a>
+                        <a href="index.php#contact">Contact</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact">Contact</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#">Curriculum Vitae</a>
+                        <a href="../files/CV_JBQ.pdf" target="_blank">Curriculum Vitae</a>
                     </li>
                 </ul>
             </div>

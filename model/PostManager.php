@@ -12,18 +12,18 @@ require_once("../model/Manager.php"); // Call for DB Connexion
 
 class PostManager extends Manager
 {
-    public function getLastSummaries($nb = 5)
+    public function getLastSummaries($nb = 3)
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, summary, DATE_FORMAT(post_date, "%d/%m/%Y à %Hh%imin%ss") FROM post ORDER BY post_date DESC LIMIT 0, '.$nb);
+        $req = $db->query('SELECT id, title, post_date, content FROM post ORDER BY post_date DESC LIMIT 0, '.$nb);
+        $summaries = $req->fetchAll();
 
-        return $req->fetchAll();
+        return $summaries;
     }
 
     public function showArticle($idArticle)
     {
         error_log('Dans post manager showArticle avec idArticle = '.$idArticle);
-        // TODO : Retrieve author for requested article
         $db = $this->dbConnect();
         $req = $db->prepare("SELECT id, user_id, title, content, DATE_FORMAT(post_date, '%d-%m-%Y à %Hh%i') AS post_date FROM post WHERE id = ?");
         $req->execute(array($idArticle));

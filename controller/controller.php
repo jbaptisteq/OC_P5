@@ -11,7 +11,7 @@ function listSummaries()
     $postManager = new Model\PostManager(); // Create Object
     $summaries = $postManager->getLastSummaries(); // Call summaries from Object $postManager
 
-    require('view/listSummaries.php');
+    return $summaries;
 }
 
 function listArticles()
