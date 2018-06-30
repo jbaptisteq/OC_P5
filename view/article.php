@@ -2,6 +2,12 @@
 session_start();
 require('../controller/controller.php');
 
+
+if (!isset($_GET['id']) || $_GET['id'] <= 0)
+{
+    echo "Cet identifiant d'article n'existe pas.";
+    exit;
+}
 error_log('$_GET id recup : '.$_GET['id']);
 $article = showArticle($_GET['id']);
 $author = getAuthor($_GET['id']);
@@ -11,6 +17,8 @@ error_log('Commentaires recup');
 
 $title = "Lecture de l'article";
 include("../view/blogHeader.php");
+
+$_SESSION['blackIce'] = bin2hex(random_bytes(32));
 ?>
 
 <!--
@@ -38,38 +46,29 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                 foreach ($comments AS $comment) :
                     if ($comment['authorized'] == 1)
                     {?><strong>
-                        <p class="col-md-12">le <?= isset($comment['comment_date'])? $comment['comment_date']: 'inconnu'?> par <?= isset($comment['author'])? $comment['author']: 'inconnu'?></p>
+                        <p class="col-md-12">le <?= isset($comment['comment_date'])? $comment['comment_date']: 'inconnu'?> par <?= isset($comment['author'])? htmlspecialchars($comment['author']): 'inconnu'?></p>
                     </strong>
                     <p class="col-md-12 border-divider"><?= isset($comment['content'])? nl2br(htmlspecialchars($comment['content'])) : 'Aucun contenu'?></p>
                 <?php }
             endforeach; ?>
         </div>
         <div class="col-lq-12 comments">
-            <form method="post" class="text-center form-group" action="article.php?action=addComment&amp;id=<?= $article['id'] ?>" method="post">
+            <form method="post" class="text-center form-group" action="addComment.php?id=<?= $article['id'] ?>" method="post">
                 <div>
                     <label for="author">Auteur</label><br />
-                    <input type="text" id="authorComment" name="authorComment" />
+                    <input type="text" id="authorComment" name="authorComment" value="<?= isset($_SESSION['username'])? htmlspecialchars($_SESSION['username']) :'' ?>" />
+                </div></br>
+                <div>
+                    <label for="content">Commentaire</label><br />
+                    <textarea id="content" class="form-control" name="content" rows="10"></textarea>
+                </div></br>
+                <div>
+                    <input type="submit" />
+                    <input type="hidden" name="blackIce" id="blackIce" value="<?php echo $_SESSION['blackIce']; ?>" />
                 </div>
-            </br>
-            <div>
-                <label for="content">Commentaire</label><br />
-                <textarea id="content" class="form-control" name="content" rows="10"></textarea>
-            </div></br>
-            <div>
-                <input type="submit" />
-            </div>
-            <?php
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['authorComment']) && !empty($_POST['content'])) {
-                    newComment($_GET['id'], $_POST['authorComment'], $_POST['content']);
-                }
-            } else {
-                throw new Exception('Aucun identifiant de billet envoyé');
-            }
-            ?>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 </section>
 
