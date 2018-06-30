@@ -23,5 +23,5 @@ if (isset($_POST['blackIce'])) {
     header('Location: article.php?id='.$_GET['id']);
 
 } else {
-    echo "erreur";
+    header('Location: article.php?id='.$_GET['id']);
 }
