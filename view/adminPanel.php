@@ -8,7 +8,7 @@ $listComments = listComments();
 
 if (!isset($_SESSION['user_id'])) {
     //check Connexion form
-    $username = htmlspecialchars($_POST['username']);
+    $username = htmlspecialchars($_SESSION['usernameTest']);
     $loginInfo = loginInfo($username);
     if (!$loginInfo) {
         $_SESSION['errorMessage'] = 'Mauvais identifiant ou mot de passe !';
@@ -17,7 +17,7 @@ if (!isset($_SESSION['user_id'])) {
     }
 
     // Comparaison du pass envoyé via le formulaire avec la base
-    $isPasswordCorrect = password_verify($_POST['password'], $loginInfo['password']);
+    $isPasswordCorrect = password_verify($_SESSION['passwordTest'], $loginInfo['password']);
     if (!$isPasswordCorrect) {
         $_SESSION['errorMessage'] = 'Mauvais identifiant ou mot de passe !';
         header('Location: connexion.php');
@@ -30,9 +30,14 @@ if (!isset($_SESSION['user_id'])) {
         exit;
     }
 
+    sleep(1);
+
     $_SESSION['user_id'] = $loginInfo['id'];
     $_SESSION['username'] = $username;
     $_SESSION['validated'] = $loginInfo['validated'];
+    unset($_SESSION['blueIce']);
+    unset($_SESSION['usernameTest']);
+    unset($_SESSION['passwordTest']);
 }
 
 ?>
@@ -46,6 +51,11 @@ if (!isset($_SESSION['user_id'])) {
                     <input type="submit" value="Déconnexion" name= "deconnect" id="button"/>
                 </form>
             </div>
+            <div class="col-lg-12 text-center">
+                <?= isset($_SESSION['username'])? ('<p>Vous êtes identifier en tant que <strong>'.$_SESSION['username'].'</strong></p>') : '' ?>
+                <h3>Poster un article</h3>
+                <a href="postArticle.php">Poster un nouvel Article</a>
+            </div>
             <div class="col-lg-6 text-center">
                 <h3>Editer un article</h3>
                 <?php foreach ($articles AS $article) : ?>
@@ -56,37 +66,24 @@ if (!isset($_SESSION['user_id'])) {
                 <h3>Valider un Commentaire</h3>
                 <?php if (isset($_SESSION['commentMessage'])): ?>
                     <span style="color: lightblue"><?= $_SESSION['commentMessage'] ?></span>
-                <?php
+                    <?php
                     unset($_SESSION['commentMessage']);
-                    endif;
+                endif;
                 ?>
                 <?php foreach ($listComments AS $comment) : ?>
-                    <p><?= isset($comment['id'])? 'commentaire n°'.$comment['id'] : '' ?> par <?= isset($comment['author'])? $comment['author'] : '' ?> <?= $_SESSION['validated'] == 1 ? '<a data-toggle="modal" data-target="#Modal" data-content="'.$comment['content'].'">Vérifier</a>' : '' ?></p>
-                    <!-- Modal -->
-                    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="ModalLabel">Commentaire</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                </div>
-                                <div class="modal-footer">
-                                    <?= $_SESSION['validated'] == 1 ? '<a href="authorizedComment.php?id='.$comment['id'].'">Valider</a>' : '' ?>
-                                    <?= $_SESSION['validated'] == 1 ? '<a href="deleteComment.php?id='.$comment['id'].'">Effacer</a>' : '' ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </div>
+                    <?= isset($comment['id'])? 'commentaire n°'.$comment['id'] : '' ?> par <?= isset($comment['author'])? $comment['author'] : '' ?>
+                </br>
+                <?= isset($comment['content'])? htmlspecialchars($comment['content']): ''?>
+            </br>
+            <a href="authorizedComment.php?id=<?= $comment['id']?>">Valider</a> /
+            <a href="deleteComment.php?id=<?= $comment['id']?>">Effacer</a>
+        </br>
+        <p>___________</p>
+    <?php endforeach; ?>
+</div>
+</div>
+</div>
 </section>
-
 
 <!--
 Fin du bloc spécifique
@@ -94,11 +91,3 @@ Fin du bloc spécifique
 <?php
 include("../view/footer.php");
 ?>
-<script>
-$('#Modal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget)
-    var recipient = button.data('content')
-    var modal = $(this)
-    modal.find('.modal-body').text(recipient)
-})
-</script>
