@@ -1,18 +1,14 @@
 <?php
 session_start();
 require('../controller/controller.php');
+include("../view/blogHeader.php");
 
 $article = showArticle($_GET['id']);
 $author = getAuthor($_GET['id']);
-
 $title = "Edition de l'Article";
-include("../view/blogHeader.php");
+
 $_SESSION['whiteIce'] = bin2hex(random_bytes(32));
 ?>
-
-<!--
-Début du bloc spécifique à cette view. Tout le reste est générique et doit être factorisé par la suite
--->
 
 <!-- Blog Section -->
 <section class="success">
@@ -24,13 +20,9 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                 <p class="text-center">le <?= isset($article['post_date'])? $article['post_date']: '' ?> par <?= isset($author['username'])? $author['username'] : 'inconnu' ?></p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-
-            </div>
-        </div>
         <div class="row"></br></br>
             <div class="col-lq-12 comments">
+                <!-- Article edition Form -->
                 <form method="post" class="text-center form-group" action="modifArticle.php?id=<?= $_GET['id'] ?>" method="post">
                     <p style="color: green"><?= isset($_SESSION['updateMessage'])? $_SESSION['updateMessage'] : "" ?></p>
                     <div>
@@ -52,9 +44,6 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
     </div>
 </section>
 
-<!--
-Fin du bloc spécifique
--->
 <?php
 include("../view/footer.php");
 ?>

@@ -7,7 +7,8 @@
                 <div class="footer-col col-md-6">
                     <h3>Coordonnées</h3>
                     <p>Queralt Jean-Baptiste</p>
-                    <p><i class="fa fa-fw fa-mobile"></i>0672616136</p>
+                    <p><i class="fa fa-fw fa-mobile"></i> 0672616136</p>
+                    <p><i class="fa fa-fw fa-envelope"></i> jb.queralt@gmail.com</p>
                 </div>
                 <div class="footer-col col-md-6">
                     <h3>Réseaux Sociaux</h3>
@@ -29,7 +30,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2018 - <a href="connexion.php" class="admin-link">Administration</a>
+                        Copyright &copy; Jean-Baptiste Queralt 2018 - <a href="connexion.php" class="admin-link">Administration</a>
                     </div>
                 </div>
             </div>
@@ -52,6 +53,8 @@
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+
+    <!-- tinymce integration -->
     <script>
     $(document).ready(function() {
         tinymce.init({

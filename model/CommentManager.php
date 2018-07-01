@@ -1,9 +1,12 @@
 <?php
-
 namespace P5jbq\Blog\Model;
+// Call for DB Connexion
+require_once("../model/Manager.php");
 
-require_once("../model/Manager.php"); // Call for DB Connexion
-
+/**
+* Comment Manager
+* Manage list, authorize, delete and show
+ */
 class CommentManager extends Manager
 {
     public function listComments()

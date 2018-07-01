@@ -1,10 +1,11 @@
 <?php
 session_start();
 require('../controller/controller.php');
-$title = "Connexion à l'administration";
 include("../view/header.php");
 
-if (!empty($_SESSION['username'])){
+$title = "Connexion à l'administration";
+
+if (!empty($_SESSION['username'])) {
     echo "</br></br></br></br></br></br>Vous êtes déjà connecté</br> <a href=\"adminPanel.php\">Retourner à l'administration</a>";
     exit;
 }
@@ -18,6 +19,7 @@ $_SESSION['blueIce'] = bin2hex(random_bytes(32));
                 <h1>Connexion</h1>
                 <form action="connectCheck.php" method="post">
                     <?php
+                    // display information message and clean vars
                     if (isset($_SESSION['errorMessage'])) {
                         echo $_SESSION['errorMessage'];
                         unset($_SESSION['errorMessage']);
@@ -38,9 +40,6 @@ $_SESSION['blueIce'] = bin2hex(random_bytes(32));
     </div>
 </section>
 
-<!--
-Fin du bloc spécifique
--->
 <?php
 include("../view/footer.php");
 ?>

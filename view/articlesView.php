@@ -1,21 +1,21 @@
 <?php
 session_start();
 require('../controller/controller.php');
-$articles = listArticles();
 include("../view/blogHeader.php");
+
+$articles = listArticles();
 $title = "Blog";
 
 ?>
 
-<!--
-Début du bloc spécifique à cette view. Tout le reste est générique et doit être factorisé par la suite
--->
+
 <?php
-foreach ($articles AS $article) :
-    // $author = getAuthor($article['id']);
+// Display all articles with short version and link for unique article
+foreach ($articles as $article) :
     $shortContent = substr($article['content'], 0, 300);
     $id = $article['id'];
     ?>
+
     <!-- Blog Section -->
     <section class="success">
         <div class="container">
@@ -33,9 +33,7 @@ foreach ($articles AS $article) :
         </div>
     </section>
 <?php endforeach; ?>
-<!--
-Fin du bloc spécifique
--->
+
 <?php
 include("../view/footer.php");
 ?>

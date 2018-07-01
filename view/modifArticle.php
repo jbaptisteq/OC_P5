@@ -1,7 +1,8 @@
 <?php
 session_start();
 require('../controller/controller.php');
-// Cas d'une validation de formulaire pour création de commentaire
+
+// Security Edit Article Form
 if (isset($_POST['whiteIce'])) {
     if (empty($_SESSION['whiteIce'])) {
         echo "Test Variable whiteIce non existantes ou vide.";

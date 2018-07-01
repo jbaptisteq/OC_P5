@@ -1,8 +1,10 @@
 <?php
 session_start();
 require('../controller/controller.php');
-$title = "S'enregistrer sur le Blog";
 include("../view/header.php");
+
+$title = "S'enregistrer sur le Blog";
+
 $_SESSION['purpleIce'] = bin2hex(random_bytes(32));
 ?>
 

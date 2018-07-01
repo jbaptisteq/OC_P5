@@ -1,7 +1,8 @@
 <?php
 session_start();
 require('../controller/controller.php');
-// Cas d'une validation de formulaire pour création de commentaire
+
+// Security nex Article Form
 if (isset($_POST['redIce'])) {
     if (empty($_SESSION['redIce'])) {
         echo "Test Variable redIce non existantes ou vide.";
@@ -21,7 +22,6 @@ if (isset($_POST['redIce'])) {
     }
     newArticle($_SESSION['user_id'], $_POST['articleTitle'], $_POST['articleContent']);
     header('Location: articlesView.php');
-
 } else {
     header('Location: postArticle.php');
 }

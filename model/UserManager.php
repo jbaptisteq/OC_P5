@@ -1,9 +1,12 @@
 <?php
-
 namespace P5jbq\Blog\Model;
+// Call for DB Connexion
+require_once("../model/Manager.php");
 
-require_once("../model/Manager.php"); // Call for DB Connexion
-
+/**
+* User Manager
+* Manage check Username, check User information, check password, new User
+ */
 class UserManager extends Manager
 {
     public function checkUsername($username)
@@ -14,15 +17,6 @@ class UserManager extends Manager
         $username_exist = $req->rowCount();
 
         return $username_exist;
-    }
-
-    public function newUser($username, $password, $email)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare("INSERT INTO User (username, password, email, validated) VALUES (?, ?, ?, 0)");
-        $newUser = $req->execute(array($username, $password, $email));
-
-        return $newUser;
     }
 
     public function  loginInfo($username)
@@ -42,5 +36,14 @@ class UserManager extends Manager
         $getPassHash = $req->execute(array($username));
 
         return $getPassHash;
+    }
+
+    public function newUser($username, $password, $email)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("INSERT INTO User (username, password, email, validated) VALUES (?, ?, ?, 0)");
+        $newUser = $req->execute(array($username, $password, $email));
+
+        return $newUser;
     }
 }

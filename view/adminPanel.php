@@ -1,8 +1,10 @@
 <?php
 session_start();
+
 require('../controller/controller.php');
-$title = "Connexion à l'administration";
 include("../view/header.php");
+
+$title = "Connexion à l'administration";
 $articles = listArticles();
 $listComments = listComments();
 
@@ -16,7 +18,7 @@ if (!isset($_SESSION['user_id'])) {
         exit;
     }
 
-    // Comparaison du pass envoyé via le formulaire avec la base
+    // check password
     $isPasswordCorrect = password_verify($_SESSION['passwordTest'], $loginInfo['password']);
     if (!$isPasswordCorrect) {
         $_SESSION['errorMessage'] = 'Mauvais identifiant ou mot de passe !';
@@ -24,6 +26,7 @@ if (!isset($_SESSION['user_id'])) {
         exit;
     }
 
+    // check administrator state
     if ($loginInfo['validated'] != 1) {
         $_SESSION['errorMessage'] = 'Vous n\'avez pas les droits suffisants pour accéder à la modération de commentaires';
         header('Location: connexion.php');
@@ -32,9 +35,12 @@ if (!isset($_SESSION['user_id'])) {
 
     sleep(1);
 
+    // Creating Session Vars
     $_SESSION['user_id'] = $loginInfo['id'];
     $_SESSION['username'] = $username;
     $_SESSION['validated'] = $loginInfo['validated'];
+
+    // Cleaning Useless Session vars
     unset($_SESSION['blueIce']);
     unset($_SESSION['usernameTest']);
     unset($_SESSION['passwordTest']);
@@ -58,7 +64,8 @@ if (!isset($_SESSION['user_id'])) {
             </div>
             <div class="col-lg-6 text-center">
                 <h3>Editer un article</h3>
-                <?php foreach ($articles AS $article) : ?>
+                <!-- display Articles for edition -->
+                <?php foreach ($articles as $article) : ?>
                     <p><?= isset($article['title'])? htmlspecialchars($article['title']) :'title' ?> par <?= isset($article['username'])? $article['username'] : '' ?> <?= $_SESSION['validated'] == 1 ? '<a href="editArticle.php?id='.htmlspecialchars($article['id']).'">Editer</a>' : '' ?></p>
                 <?php endforeach; ?>
             </div>
@@ -69,25 +76,18 @@ if (!isset($_SESSION['user_id'])) {
                     <?php
                     unset($_SESSION['commentMessage']);
                 endif;
-                ?>
-                <?php foreach ($listComments AS $comment) : ?>
-                    <?= isset($comment['id'])? 'commentaire n°'.$comment['id'] : '' ?> par <?= isset($comment['author'])? $comment['author'] : '' ?>
+                // display comments waiting validate
+                foreach ($listComments as $comment) : ?><?= isset($comment['id'])? 'commentaire n°'.$comment['id'] : '' ?> par <?= isset($comment['author'])? $comment['author'] : '' ?>
+                </br><?= isset($comment['content'])? htmlspecialchars($comment['content']): ''?></br>
+                <a href="authorizedComment.php?id=<?= $comment['id']?>">Valider</a> /
+                <a href="deleteComment.php?id=<?= $comment['id']?>">Effacer</a>
                 </br>
-                <?= isset($comment['content'])? htmlspecialchars($comment['content']): ''?>
-            </br>
-            <a href="authorizedComment.php?id=<?= $comment['id']?>">Valider</a> /
-            <a href="deleteComment.php?id=<?= $comment['id']?>">Effacer</a>
-        </br>
-        <p>___________</p>
-    <?php endforeach; ?>
-</div>
-</div>
-</div>
+                <p>___________</p><?php endforeach; ?>
+            </div>
+        </div>
+    </div>
 </section>
 
-<!--
-Fin du bloc spécifique
--->
 <?php
 include("../view/footer.php");
 ?>

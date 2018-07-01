@@ -1,15 +1,12 @@
 <?php
-
 namespace P5jbq\Blog\Model;
+// Call for DB Connexion
+require_once("../model/Manager.php");
 
-require_once("../model/Manager.php"); // Call for DB Connexion
-
-// require_once(PROJECT_BASE_DIRECTORY_PATH.'/model/Manager.php');
-// Indices : __DIR__ ou $_SERVER['DOCUMENT_ROOT']
-// foreach ($_SERVER AS $key => $value) {
-//      echo $key, ' => ', $value, '<br>';
-// }
-
+/**
+* Post Manager
+* Manage Summaries, list, author, show, display Comments, new article, new comment and update article
+ */
 class PostManager extends Manager
 {
     public function getLastSummaries($nb = 3)
@@ -23,12 +20,11 @@ class PostManager extends Manager
 
     public function showArticle($idArticle)
     {
-        error_log('Dans post manager showArticle avec idArticle = '.$idArticle);
         $db = $this->dbConnect();
         $req = $db->prepare("SELECT id, user_id, title, content, DATE_FORMAT(post_date, '%d-%m-%Y à %Hh%i') AS post_date FROM post WHERE id = ?");
         $req->execute(array($idArticle));
         $article = $req->fetch();
-        error_log('Juste avant return post manager showArticle');
+
         return $article;
     }
 
