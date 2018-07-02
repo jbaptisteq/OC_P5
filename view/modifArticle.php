@@ -20,7 +20,7 @@ if (isset($_POST['whiteIce'])) {
         echo "Vous avez laissé un ou des champs vide.";
         exit;
     }
-    updateArticle($_POST['articleTitle'], $_POST['articleContent'], $_GET['id']);
+    updateArticle($_POST['articleTitle'], $_POST['articleContent'],$_POST['updateAuthor'], $_GET['id']);
     $_SESSION['updateMessage'] = "L'article numéro ".$_GET['id']." a bien été mis à jour.";
     header('Location: editArticle.php?id='.$_GET['id']);
 

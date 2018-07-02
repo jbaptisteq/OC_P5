@@ -107,10 +107,10 @@ function getPassHash($username)
     return $getPassHash;
 }
 
-function updateArticle($updateTitle, $updateContent, $idArticle)
+function updateArticle($updateTitle, $updateContent, $idArticle, $updateAuthor)
 {
     $postManager = new Model\PostManager();
-    $updateArticle = $postManager->updateArticle($updateTitle, $updateContent, $idArticle);
+    $updateArticle = $postManager->updateArticle($updateTitle, $updateContent, $idArticle, $updateAuthor);
 
     if ($updateArticle === false) {
         throw new Exception("Impossible d'éditer l'article !");

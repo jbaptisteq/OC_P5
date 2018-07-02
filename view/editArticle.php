@@ -30,7 +30,11 @@ $_SESSION['whiteIce'] = bin2hex(random_bytes(32));
                         <input type="text" id="updateTitle" name="articleTitle" size="50" value="<?= isset($article['title'])? htmlspecialchars($article['title']) :'titre' ?>" />
                     </div></br>
                     <div>
-                        <label for="content">Contenu</label><br />
+                        <label for="author">Auteur</label><br />
+                        <input type="text" id="updateAuthor" name="updateAuthor" value="<?= isset($author['username'])? htmlspecialchars($author['username']) :'auteur' ?>" />
+                        <p style="font-size: 1em">Edité par <?= isset($article['edit_author'])? $article['edit_author'] : '' ?> </p>
+                    <div>
+                        <br/><label for="content">Contenu</label><br />
                         <textarea id="articleContent" class="form-control" name="articleContent" rows="10"><?= isset($article['content'])? nl2br(htmlentities($article['content'])) : 'void' ?></textarea>
                     </div></br>
                     <div>
@@ -40,6 +44,7 @@ $_SESSION['whiteIce'] = bin2hex(random_bytes(32));
                 </form>
                 <div class="row">
                     <div class="col-lg-12 text-center">
+                        <br />
                         <a class="text-center" href="deleteArticle.php?id=<?= $article['id']?>">Effacer l'article</a></p>
                         <p style="color: darkred" >Attention toute action de suppression d'un Article est irréversible.</p>
                         <p><a href="adminPanel.php" class="return_index">Retour à l'administration</a></p>
