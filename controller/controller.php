@@ -152,3 +152,13 @@ function deleteComment($idComment)
         throw new Exception("Impossible de Supprimer le Commentaire !");
     }
 }
+
+function deleteArticle($idArticle)
+{
+    $postManager = new Model\PostManager();
+    $deleteArticle = $postManager->deleteArticle($idArticle);
+
+    if ($deleteArticle === false) {
+        throw new Exception("Impossible de Supprimer l'\Article !");
+    }
+}

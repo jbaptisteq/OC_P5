@@ -86,4 +86,11 @@ class PostManager extends Manager
                 "id" => $idArticle
         ]);
     }
+
+    public function deleteArticle($idArticle)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM post WHERE id = ?');
+        $req->execute(array($idArticle));
+    }
 }

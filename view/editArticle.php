@@ -38,12 +38,20 @@ $_SESSION['whiteIce'] = bin2hex(random_bytes(32));
                         <input type="hidden" name="whiteIce" id="whiteIce" value="<?php echo $_SESSION['whiteIce']; ?>" />
                     </div>
                 </form>
-                <p><a href="adminPanel.php" class="return_index">Retour à l'administration</a></p>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <a class="text-center" href="deleteArticle.php?id=<?= $article['id']?>">Effacer l'article</a></p>
+                        <p style="color: darkred" >Attention toute action de suppression d'un Article est irréversible.</p>
+                        <p><a href="adminPanel.php" class="return_index">Retour à l'administration</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <?php
+unset($_SESSION['updateMessage']);
+
 include("../view/footer.php");
 ?>

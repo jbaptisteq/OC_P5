@@ -64,8 +64,9 @@ if (!isset($_SESSION['user_id'])) {
             </div>
             <div class="col-lg-6 text-center">
                 <h3>Editer un article</h3>
-                <!-- display Articles for edition -->
-                <?php foreach ($articles as $article) : ?>
+                <?php 
+                // display Articles for edition
+                foreach ($articles as $article) : ?>
                     <p><?= isset($article['title'])? htmlspecialchars($article['title']) :'title' ?> par <?= isset($article['username'])? $article['username'] : '' ?> <?= $_SESSION['validated'] == 1 ? '<a href="editArticle.php?id='.htmlspecialchars($article['id']).'">Editer</a>' : '' ?></p>
                 <?php endforeach; ?>
             </div>

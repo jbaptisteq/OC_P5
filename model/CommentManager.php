@@ -18,18 +18,21 @@ class CommentManager extends Manager
 
         return $listComments;
     }
+    
     public function authorizedComment($idComment)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE comment SET authorized = 1 WHERE id = ?');
         $req->execute(array($idComment));
     }
+
     public function deleteComment($idComment)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM comment WHERE id = ?');
         $req->execute(array($idComment));
     }
+
     public function showComment($idComment)
     {
         $db = $this->dbConnect();
