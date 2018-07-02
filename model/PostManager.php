@@ -21,7 +21,7 @@ class PostManager extends Manager
     public function showArticle($idArticle)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id, user_id, title, content, DATE_FORMAT(post_date, '%d-%m-%Y à %Hh%i') AS post_date FROM post WHERE id = ?");
+        $req = $db->prepare("SELECT id, user_id, title, content, DATE_FORMAT(post_date, '%d-%m-%Y à %Hh%i') AS post_date, DATE_FORMAT(edit_date, '%d-%m-%Y à %Hh%i') AS edit_date FROM post WHERE id = ?");
         $req->execute(array($idArticle));
         $article = $req->fetch();
 
@@ -41,7 +41,7 @@ class PostManager extends Manager
     public function listArticles()
     {
         $db = $this->dbConnect();
-        $req = $db->query("SELECT post.id, post.user_id, post.title, post.content, DATE_FORMAT(post.post_date, '%d-%m-%Y à %Hh%i') AS post_date, user.username FROM post, user WHERE post.user_id = user.id ORDER BY post.post_date DESC");
+        $req = $db->query("SELECT post.id, post.user_id, post.title, post.content, DATE_FORMAT(post.edit_date, '%d-%m-%Y à %Hh%i') AS edit_date, DATE_FORMAT(post.post_date, '%d-%m-%Y à %Hh%i') AS post_date, user.username FROM post, user WHERE post.user_id = user.id ORDER BY post.post_date DESC");
         $req->execute();
         $articles = $req->fetchAll();
 

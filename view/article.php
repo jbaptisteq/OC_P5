@@ -24,6 +24,7 @@ $_SESSION['blackIce'] = bin2hex(random_bytes(32));
                 <h1><?= isset($article['title'])? htmlspecialchars($article['title']) :'titre' ?></h1>
             </div>
             <p class="text-center">le <?= isset($article['post_date'])? $article['post_date']: '' ?> par <?= isset($author['username'])? $author['username'] : 'inconnu' ?></p>
+            <p class="text-center"><?= isset($article['edit_date'])? 'modifié le '.$article['edit_date']: '' ?></p>
             <p class="text-center"><?= isset($_SESSION['validated'])? ($_SESSION['validated'] === 1 ? '<a href="editArticle.php?id='.$article['id'].'">Editer</a>' : '') : '' ?></p>
         </div>
         <div class="row">
