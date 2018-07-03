@@ -1,13 +1,20 @@
-# OC_P5
+# OpenClassroom - PHP/Symphony Developer 
+# Project 5 _ Blog from Scratch
 
-Branche default -> master
-
-Fonctionnalité a découper en issue
-
-1 issue -> 1 branche ( ex : dev/#n° )
-
-fonctionnalité ok -> pull request ( reviewer (vérificateur/mentor) et assigné(dev/moi) )
-ok ou non ( review + com )
- Si ok -> merge en master  puis enchainé avec la fonctionnalité suivante
+Link of the Path :
+ https://openclassrooms.com/paths/59-developpeur-dapplication-php-symfony
  
-( écrire en anglais ) 
+Languages used :
+ html 5, CSS 3
+ Javascript, jQuery
+ PHP, MySQL
+ 
+ Getting Started :
+  These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+ 
+ Prerequisites :
+  For Windows you need a web development environment, like wampServer.
+  Link and installation instructions available here : http://www.wampserver.com/en/
+  
+ 
+
