@@ -24,7 +24,7 @@ foreach ($articles as $article) :
                     <h1><?= isset($article['title'])? htmlspecialchars($article['title']) :'title' ?></h1>
                 </div>
                 <p class="text-center">le <?= isset($article['post_date'])? $article['post_date']: '' ?> par <?= isset($article['username'])? $article['username'] : '' ?></p>
-                <p class="text-center"><?= isset($article['edit_date'])? 'modifié le '.$article['edit_date'].' par' : '' ?><?= isset($article['edit_author'])? $article['edit_author'] : '' ?> </p>
+                <p class="text-center"><?= isset($article['edit_date'])? 'modifié le '.$article['edit_date'].' par ' : '' ?><?= isset($article['edit_author'])? $article['edit_author'] : '' ?> </p>
             </div>
             <div class="row">
                 <div class="col-lg-12">
