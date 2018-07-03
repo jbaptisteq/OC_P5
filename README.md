@@ -5,9 +5,7 @@ Link of the Path :
  https://openclassrooms.com/paths/59-developpeur-dapplication-php-symfony
  
 Languages used :
- html 5, CSS 3
- Javascript, jQuery
- PHP, MySQL
+ html 5, CSS 3, Javascript, jQuery, PHP, MySQL
  
  Getting Started :
   These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
