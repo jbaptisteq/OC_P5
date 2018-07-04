@@ -1,5 +1,7 @@
 <?php
+if (!isset($title)) {
     $title = 'Jean-Baptiste Queralt - Développeur PHP';
+}
 ?>
 
 <!DOCTYPE html>

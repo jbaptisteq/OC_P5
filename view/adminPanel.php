@@ -4,7 +4,7 @@ session_start();
 require('../controller/controller.php');
 include("../view/header.php");
 
-$title = "Connexion à l'administration";
+$title = "Administration";
 $articles = listArticles();
 $listComments = listComments();
 

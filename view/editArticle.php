@@ -5,7 +5,7 @@ include("../view/blogHeader.php");
 
 $article = showArticle($_GET['id']);
 $author = getAuthor($_GET['id']);
-$title = "Edition de l'Article";
+$title = "Edition : ".$article['title'];
 
 $_SESSION['whiteIce'] = bin2hex(random_bytes(32));
 ?>

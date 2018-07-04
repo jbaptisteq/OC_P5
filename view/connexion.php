@@ -1,9 +1,12 @@
 <?php
 session_start();
+
+$title = "Connexion à l'administration";
+
 require('../controller/controller.php');
 include("../view/header.php");
 
-$title = "Connexion à l'administration";
+
 
 if (!empty($_SESSION['username'])) {
     echo "</br></br></br></br></br></br>Vous êtes déjà connecté</br> <a href=\"adminPanel.php\">Retourner à l'administration</a>";

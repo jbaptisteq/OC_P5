@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+$title = "Lecture de l'article";
+
 require('../controller/controller.php');
 include("../view/blogHeader.php");
 
@@ -11,7 +14,6 @@ if (!isset($_GET['id']) || $_GET['id'] <= 0) {
 $article = showArticle($_GET['id']);
 $author = getAuthor($_GET['id']);
 $comments = getComments($_GET['id']);
-$title = "Lecture de l'article";
 
 $_SESSION['blackIce'] = bin2hex(random_bytes(32));
 ?>

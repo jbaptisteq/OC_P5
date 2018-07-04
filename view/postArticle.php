@@ -1,9 +1,10 @@
 <?php
 session_start();
-require('../controller/controller.php');
-include("../view/blogHeader.php");
 
 $title = "Nouvel Article";
+
+require('../controller/controller.php');
+include("../view/blogHeader.php");
 
 // Check Administrator state
 if ($_SESSION['validated'] != 1) {

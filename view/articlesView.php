@@ -1,10 +1,13 @@
 <?php
 session_start();
+
+$title = "Blog";
+
 require('../controller/controller.php');
 include("../view/blogHeader.php");
 
 $articles = listArticles();
-$title = "Blog";
+
 
 ?>
 
