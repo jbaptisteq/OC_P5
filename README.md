@@ -1,25 +1,25 @@
 # OpenClassroom - PHP/Symphony Developer 
 # Project 5 _ Blog from Scratch
 
-##Link of the Path
+## Link of the Path
  ```
  https://openclassrooms.com/paths/59-developpeur-dapplication-php-symfony
  ```
  
-##Languages used :
+## Languages used :
  html 5, CSS 3, Javascript, jQuery, PHP, MySQL
  
-##Getting Started :
+## Getting Started :
   These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
  
-##Prerequisites :
+## Prerequisites :
   For Windows you need a web development environment, like wampServer.
   Link and installation instructions available here 
   ```
   http://www.wampserver.com/en/
   ```
 
-##Installing :
+## Installing :
  Download and unzip on your folder choice this repository 
  ```
  https://github.com/jbaptisteq/OC_P5/archive/master.zip
@@ -38,12 +38,12 @@
  ```
  Dont forget to change this or create your own testing account on view/register.php, or directly in user (table) on database.
  
-##Feature :
+## Feature :
 * Create Account
 * post/edit/delete Articles
 * post/validate/delete Comments
 * administration panel for management
 
-##Built with
+## Built with
 * ATOM - Code
 * WAMP - Database management
