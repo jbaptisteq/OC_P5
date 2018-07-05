@@ -33,10 +33,12 @@
  You can now use blog by running file view/index.php
  This dataset have an admin account and a user account for test.
  ```
- *Administrator
- login : admin password : admin
- *User
- login : user password : user
+ Administrator
+  login : admin 
+  password : admin
+ User
+  login : user 
+  password : user
  ```
  Dont forget to change this or create your own testing account on view/register.php, or directly in user (table) on database.
  
