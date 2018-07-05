@@ -1,13 +1,49 @@
-# OC_P5
+# OpenClassroom - PHP/Symphony Developer 
+# Project 5 _ Blog from Scratch
 
-Branche default -> master
-
-Fonctionnalité a découper en issue
-
-1 issue -> 1 branche ( ex : dev/#n° )
-
-fonctionnalité ok -> pull request ( reviewer (vérificateur/mentor) et assigné(dev/moi) )
-ok ou non ( review + com )
- Si ok -> merge en master  puis enchainé avec la fonctionnalité suivante
+## Link of the Path
+ ```
+ https://openclassrooms.com/paths/59-developpeur-dapplication-php-symfony
+ ```
  
-( écrire en anglais ) 
+## Languages used :
+ html 5, CSS 3, Javascript, jQuery, PHP, MySQL
+ 
+## Getting Started :
+  These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+ 
+## Prerequisites :
+  For Windows you need a web development environment, like wampServer.
+  Link and installation instructions available here 
+  ```
+  http://www.wampserver.com/en/
+  ```
+
+## Installing :
+ Download and unzip on your folder choice this repository 
+ ```
+ https://github.com/jbaptisteq/OC_P5/archive/master.zip
+ ```
+ Execute phpmyadmin and create à new database, import p5jbq.sql on your database for install with à demo-version dataset.
+ 
+ Open files model/manager.php on line 10, use your own dbname, login and pass
+ ```
+ 10  $db = new \PDO('mysql:host=localhost;dbname=p5jbq;charset=utf8', 'root', '');
+ ```
+ You can now use blog by running file view/index.php
+ This dataset have an admin account and an user account for test.
+ ```
+ admin : admin password : admin
+ user : user password : user
+ ```
+ Dont forget to change this or create your own testing account on view/register.php, or directly in user (table) on database.
+ 
+## Feature :
+* Create Account
+* post/edit/delete Articles
+* post/validate/delete Comments
+* administration panel for management
+
+## Built with
+* ATOM - Code
+* WAMP - Database management
