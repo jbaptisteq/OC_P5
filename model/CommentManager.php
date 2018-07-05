@@ -1,9 +1,12 @@
 <?php
-
 namespace P5jbq\Blog\Model;
+// Call for DB Connexion
+require_once("../model/Manager.php");
 
-require_once("../model/Manager.php"); // Call for DB Connexion
-
+/**
+* Comment Manager
+* Manage list, authorize, delete and show
+ */
 class CommentManager extends Manager
 {
     public function listComments()
@@ -15,18 +18,21 @@ class CommentManager extends Manager
 
         return $listComments;
     }
+    
     public function authorizedComment($idComment)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE comment SET authorized = 1 WHERE id = ?');
         $req->execute(array($idComment));
     }
+
     public function deleteComment($idComment)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM comment WHERE id = ?');
         $req->execute(array($idComment));
     }
+
     public function showComment($idComment)
     {
         $db = $this->dbConnect();

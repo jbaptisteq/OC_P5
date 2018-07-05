@@ -284,7 +284,7 @@ section.success {
     border-radius: 0;
     font-size: 1.5em;
     background: none;
-    box-shadow: none !important;
+    box-shadow: none;
     resize: none;
     font-family: "Pen", sans-serif;
 }

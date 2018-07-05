@@ -1,5 +1,7 @@
 <?php
+if (!isset($title)) {
     $title = 'Jean-Baptiste Queralt - Développeur PHP';
+}
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +73,5 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
