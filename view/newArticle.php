@@ -5,15 +5,11 @@ require('../controller/controller.php');
 // Security nex Article Form
 if (isset($_POST['redIce'])) {
     if (empty($_SESSION['redIce'])) {
-        echo "Test Variable redIce non existantes ou vide.";
-        print_r($_SESSION);
-        echo $_SESSION['redIce'];
+        echo "Une erreur s'est produite lors de l'envoi de votre article.";
         exit;
     }
     if ($_SESSION['redIce'] !== $_POST['redIce']) {
-        echo "Les variables redIce sont différentes.";
-        print_r($_SESSION);
-        echo $_SESSION['redIce'];
+        echo "Une erreur s'est produite lors de l'envoi de votre article.";
         exit;
     }
     if (empty($_POST['articleTitle']) || empty($_POST['articleContent'])) {

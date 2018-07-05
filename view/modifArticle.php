@@ -5,11 +5,11 @@ require('../controller/controller.php');
 // Security Edit Article Form
 if (isset($_POST['whiteIce'])) {
     if (empty($_SESSION['whiteIce'])) {
-        echo "Test Variable whiteIce non existantes ou vide.";
+        echo "Une erreur s'est produite lors de l'edition de votre article.";
         exit;
     }
     if ($_SESSION['whiteIce'] !== $_POST['whiteIce']) {
-        echo "Les variables whiteIce sont différentes.";
+        echo "Une erreur s'est produite lors de l'edition de votre article.";
         exit;
     }
     if (empty($_POST['articleTitle']) || empty($_POST['articleContent'])) {

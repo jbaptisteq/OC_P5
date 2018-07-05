@@ -5,15 +5,11 @@ require('../controller/controller.php');
 // Security register Form
 if (isset($_POST['purpleIce'])) {
     if (empty($_SESSION['purpleIce'])) {
-        echo "Test Variable purpleIce non existantes ou vide.";
-        print_r($_SESSION);
-        echo $_SESSION['purpleIce'];
+        echo "Une erreur s'est produite lors de la création de votre compte.";
         exit;
     }
     if ($_SESSION['purpleIce'] !== $_POST['purpleIce']) {
-        echo "Les variables whiteIce sont différentes.";
-        print_r($_SESSION);
-        echo $_SESSION['purpleIce'];
+        echo "Une erreur s'est produite lors de la création de votre compte.";
         exit;
     }
     if (empty($_POST['username']) ||
