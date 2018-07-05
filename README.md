@@ -24,17 +24,19 @@
  ```
  https://github.com/jbaptisteq/OC_P5/archive/master.zip
  ```
- Execute phpmyadmin and create à new database, import p5jbq.sql on your database for install with à demo-version dataset.
+ Execute phpmyadmin and create a new database, import p5jbq.sql on your database for install with a demo-version dataset.
  
- Open files model/manager.php on line 10, use your own dbname, login and pass
+ Open file model/manager.php on line 10, use your own dbname, login and pass
  ```
  10  $db = new \PDO('mysql:host=localhost;dbname=p5jbq;charset=utf8', 'root', '');
  ```
  You can now use blog by running file view/index.php
- This dataset have an admin account and an user account for test.
+ This dataset have an admin account and a user account for test.
  ```
- admin : admin password : admin
- user : user password : user
+ *Administrator
+ login : admin password : admin
+ *User
+ login : user password : user
  ```
  Dont forget to change this or create your own testing account on view/register.php, or directly in user (table) on database.
  
@@ -45,5 +47,5 @@
 * administration panel for management
 
 ## Built with
-* ATOM - Code
-* WAMP - Database management
+* [ATOM](https://atom.io/) - Code
+* [WAMP](http://www.wampserver.com/en/) - Database management
