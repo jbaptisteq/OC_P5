@@ -6,14 +6,10 @@ require('../controller/controller.php');
 if (isset($_POST['whiteIce'])) {
     if (empty($_SESSION['whiteIce'])) {
         echo "Test Variable whiteIce non existantes ou vide.";
-        print_r($_SESSION);
-        echo $_SESSION['whiteIce'];
         exit;
     }
     if ($_SESSION['whiteIce'] !== $_POST['whiteIce']) {
         echo "Les variables whiteIce sont différentes.";
-        print_r($_SESSION);
-        echo $_SESSION['whiteIce'];
         exit;
     }
     if (empty($_POST['articleTitle']) || empty($_POST['articleContent'])) {
