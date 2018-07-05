@@ -21,7 +21,7 @@ $_SESSION['redIce'] = bin2hex(random_bytes(32));
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>Nouvel Article</h1>
-                <?= isset($_SESSION['username'])? ('<p>Vous êtes identifier en tant que <strong>'.$_SESSION['username'].'</strong></p>') : '' ?>
+                <?= isset($_SESSION['username'])? ('<p>Vous êtes identifié en tant que <strong>'.$_SESSION['username'].'</strong></p>') : '' ?>
             </div>
         </div>
         <div class="row"></br></br>
