@@ -1,15 +1,12 @@
 <?php
-
 namespace P5jbq\Blog\Model;
+// Call for DB Connexion
+require_once("../model/Manager.php");
 
-require_once("../model/Manager.php"); // Call for DB Connexion
-
-// require_once(PROJECT_BASE_DIRECTORY_PATH.'/model/Manager.php');
-// Indices : __DIR__ ou $_SERVER['DOCUMENT_ROOT']
-// foreach ($_SERVER AS $key => $value) {
-//      echo $key, ' => ', $value, '<br>';
-// }
-
+/**
+* Post Manager
+* Manage Summaries, list, author, show, display Comments, new article, new comment and update article
+ */
 class PostManager extends Manager
 {
     public function getLastSummaries()
@@ -23,12 +20,11 @@ class PostManager extends Manager
 
     public function showArticle($idArticle)
     {
-        error_log('Dans post manager showArticle avec idArticle = '.$idArticle);
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT id, user_id, title, content, DATE_FORMAT(post_date, '%d-%m-%Y à %Hh%i') AS post_date FROM post WHERE id = ?");
+        $req = $db->prepare("SELECT id, user_id, title, content, edit_author, DATE_FORMAT(post_date, '%d-%m-%Y à %Hh%i') AS post_date, DATE_FORMAT(edit_date, '%d-%m-%Y à %Hh%i') AS edit_date FROM post WHERE id = ?");
         $req->execute(array($idArticle));
         $article = $req->fetch();
-        error_log('Juste avant return post manager showArticle');
+
         return $article;
     }
 
@@ -45,7 +41,7 @@ class PostManager extends Manager
     public function listArticles()
     {
         $db = $this->dbConnect();
-        $req = $db->query("SELECT post.id, post.user_id, post.title, post.content, DATE_FORMAT(post.post_date, '%d-%m-%Y à %Hh%i') AS post_date, user.username FROM post, user WHERE post.user_id = user.id ORDER BY post.post_date DESC");
+        $req = $db->query("SELECT post.id, post.user_id, post.title, post.content, post.edit_author, DATE_FORMAT(post.edit_date, '%d-%m-%Y à %Hh%i') AS edit_date, DATE_FORMAT(post.post_date, '%d-%m-%Y à %Hh%i') AS post_date, user.username FROM post, user WHERE post.user_id = user.id ORDER BY post.post_date DESC");
         $req->execute();
         $articles = $req->fetchAll();
 
@@ -80,14 +76,22 @@ class PostManager extends Manager
         return $newArticle;
     }
 
-    public function updateArticle($updateTitle, $updateContent, $idArticle)
+    public function updateArticle($updateTitle, $updateContent, $updateAuthor, $idArticle)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE post SET title = :title, content = :content, edit_date = NOW() WHERE id = :id');
+        $req = $db->prepare('UPDATE post SET title = :title, content = :content, edit_author = :edit_author, edit_date = NOW() WHERE id = :id');
         $req->execute([
                 "title" => $updateTitle,
                 "content" => $updateContent,
+                "edit_author" => $updateAuthor,
                 "id" => $idArticle
         ]);
+    }
+
+    public function deleteArticle($idArticle)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM post WHERE id = ?');
+        $req->execute(array($idArticle));
     }
 }

@@ -1,9 +1,19 @@
 <?php
-session_start();
 
+/**
+* Index file for site
+* PHP Version 7.1.9
+* Based on startbootstrap-freelancer theme
+*
+* @author JBQ <jb.queralt@gmail.com>
+*
+ */
+
+session_start();
 require('../controller/controller.php');
-$title = "Jean-Baptiste Queralt - Developpeur PHP";
 include("../view/header.php");
+
+$title = "Jean-Baptiste Queralt - Developpeur PHP";
 $summaries = listSummaries();
 ?>
 
@@ -35,7 +45,8 @@ $summaries = listSummaries();
         </div>
         <div class="row">
             <?php
-            foreach ($summaries AS $summary) :
+            // display the last Articles
+            foreach ($summaries as $summary) :
                 $shortContent = substr($summary['content'], 0, 150);
             ?>
                 <div class="col-lg-4">
@@ -99,13 +110,13 @@ $summaries = listSummaries();
     </div>
 </section>
 
-<?php
-include("../view/footer.php");
-?>
-
 <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
 <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
     <a class="btn btn-primary" href="#page-top">
         <i class="fa fa-chevron-up"></i>
     </a>
 </div>
+
+<?php
+include("../view/footer.php");
+?>

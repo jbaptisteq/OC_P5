@@ -68,8 +68,8 @@ function newArticle($userId, $articleTitle, $articleContent)
     $postManager = new Model\PostManager();
     $newArticle = $postManager->postArticle($userId, $articleTitle, $articleContent);
 
-    if($newArticle === false){
-        throw new Exception ("Impossible d'ajouter l'article !");
+    if ($newArticle === false) {
+        throw new Exception("Impossible d'ajouter l'article !");
     }
 }
 
@@ -87,7 +87,7 @@ function newUser($username, $password, $email)
     $newUser = $userManager->newUser($username, $password, $email);
 
     if ($newUser === false) {
-        throw new Exception ("Impossible d'ajouter l'utilisateur !");
+        throw new Exception("Impossible d'ajouter l'utilisateur !");
     }
 }
 
@@ -107,13 +107,13 @@ function getPassHash($username)
     return $getPassHash;
 }
 
-function updateArticle($updateTitle, $updateContent, $idArticle)
+function updateArticle($updateTitle, $updateContent, $idArticle, $updateAuthor)
 {
     $postManager = new Model\PostManager();
-    $updateArticle = $postManager->updateArticle($updateTitle, $updateContent, $idArticle);
+    $updateArticle = $postManager->updateArticle($updateTitle, $updateContent, $idArticle, $updateAuthor);
 
     if ($updateArticle === false) {
-        throw new Exception ("Impossible d'éditer l'article !");
+        throw new Exception("Impossible d'éditer l'article !");
     }
 }
 
@@ -131,7 +131,7 @@ function authorizedComment($idComment)
     $authorizedComment = $commentManager->authorizedComment($idComment);
 
     if ($authorizedComment === false) {
-        throw new Exception ("Impossible de Valider le Commentaire !");
+        throw new Exception("Impossible de Valider le Commentaire !");
     }
 }
 
@@ -149,6 +149,16 @@ function deleteComment($idComment)
     $deleteComment = $commentManager->deleteComment($idComment);
 
     if ($deleteComment === false) {
-        throw new Exception ("Impossible de Supprimer le Commentaire !");
+        throw new Exception("Impossible de Supprimer le Commentaire !");
+    }
+}
+
+function deleteArticle($idArticle)
+{
+    $postManager = new Model\PostManager();
+    $deleteArticle = $postManager->deleteArticle($idArticle);
+
+    if ($deleteArticle === false) {
+        throw new Exception("Impossible de Supprimer l'\Article !");
     }
 }

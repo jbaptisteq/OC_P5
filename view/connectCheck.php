@@ -1,7 +1,8 @@
 <?php
 session_start();
 require('../controller/controller.php');
-// Cas d'une validation de formulaire pour création de commentaire
+
+// Security Connection Form
 if (isset($_POST['blueIce'])) {
     if (empty($_SESSION['blueIce'])) {
         $_SESSION['errorMessage'] = 'Erreur de session, veuillez vous reconnecter.';
@@ -18,9 +19,9 @@ if (isset($_POST['blueIce'])) {
         header('Location: connexion.php');
         exit;
     }
-        $_SESSION['usernameTest'] = $_POST['username'];
-        $_SESSION['passwordTest'] = $_POST['password'];
-        header('Location: adminPanel.php');
+    $_SESSION['usernameTest'] = $_POST['username'];
+    $_SESSION['passwordTest'] = $_POST['password'];
+    header('Location: adminPanel.php');
 } else {
     $_SESSION['errorMessage'] = 'Erreur de session, veuillez vous reconnecter.';
     header('Location: connexion.php');

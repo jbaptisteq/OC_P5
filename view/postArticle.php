@@ -1,10 +1,12 @@
 <?php
 session_start();
-require('../controller/controller.php');
 
 $title = "Nouvel Article";
+
+require('../controller/controller.php');
 include("../view/blogHeader.php");
 
+// Check Administrator state
 if ($_SESSION['validated'] != 1) {
     $_SESSION['errorMessage'] = 'Vous n\'avez pas les droits suffisants pour accéder à la création d\'article.';
     echo $_SESSION['errorMessage'];
@@ -13,17 +15,13 @@ if ($_SESSION['validated'] != 1) {
 $_SESSION['redIce'] = bin2hex(random_bytes(32));
 ?>
 
-<!--
-Début du bloc spécifique à cette view. Tout le reste est générique et doit être factorisé par la suite
--->
-
 <!-- Blog Section -->
 <section class="success">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>Nouvel Article</h1>
-                <?= isset($_SESSION['username'])? ('<p>Vous êtes identifier en tant que <strong>'.$_SESSION['username'].'</strong></p>') : '' ?>
+                <?= isset($_SESSION['username'])? ('<p>Vous êtes identifié en tant que <strong>'.$_SESSION['username'].'</strong></p>') : '' ?>
             </div>
         </div>
         <div class="row"></br></br>
@@ -48,9 +46,6 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
     </div>
 </section>
 
-<!--
-Fin du bloc spécifique
--->
 <?php
 include("../view/footer.php");
 ?>

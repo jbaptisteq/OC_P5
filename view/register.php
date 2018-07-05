@@ -1,8 +1,11 @@
 <?php
 session_start();
-require('../controller/controller.php');
+
 $title = "S'enregistrer sur le Blog";
+
+require('../controller/controller.php');
 include("../view/header.php");
+
 $_SESSION['purpleIce'] = bin2hex(random_bytes(32));
 ?>
 
@@ -18,7 +21,7 @@ $_SESSION['purpleIce'] = bin2hex(random_bytes(32));
                         <p>Confirmation du Mot de passe :<br /><input type="password" name="password_check" id="password_check"/></p>
                         <p>Adresse Mail : <br /><input type="text" name="email"  id="email_user" /></p>
                         <input type="submit" name="submit" value="S'enregistrer" id="button"/>
-                        <input type="hidden" name="purpleIce" id="purpleIce" value="<?php echo $_SESSION['purpleIce']; ?>" />
+                        <input type="hidden" name="purpleIce" id="purpleIce" value="<?php echo addslashes($_SESSION['purpleIce']); ?>" />
                         <p><a href="connexion.php" class="return_index">Retour</a></p>
                     </form>
                 </p>
