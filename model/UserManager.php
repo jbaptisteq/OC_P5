@@ -9,8 +9,9 @@ class UserManager extends Manager
     public function checkUsername($username)
     {
         $db = $this->dbConnect();
-        $req = $db->query("SELECT username FROM user WHERE username = '$username'");
-        $username_exist = $req->rowCount(); // if username already exist count 1
+        $req = $db->prepare("SELECT username FROM user WHERE username = '$username'");
+        $req->execute(array());
+        $username_exist = $req->rowCount();
 
         return $username_exist;
     }

@@ -6,11 +6,22 @@
             <div class="row">
                 <div class="footer-col col-md-6">
                     <h3>Coordonnées</h3>
-
+                    <p>Queralt Jean-Baptiste</p>
+                    <p><i class="fa fa-fw fa-mobile"></i>0672616136</p>
                 </div>
                 <div class="footer-col col-md-6">
-                    <h3>Divers</h3>
-                    <?php var_dump($_SESSION); ?>
+                    <h3>Réseaux Sociaux</h3>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://twitter.com/jb_quer" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/jean-baptiste-q-18a8a0130/" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/jbaptisteq" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -18,7 +29,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2016 - <a href="connexion.php" class="admin-link">Administration</a>
+                        Copyright &copy; Your Website 2018 - <a href="connexion.php" class="admin-link">Administration</a>
                     </div>
                 </div>
             </div>

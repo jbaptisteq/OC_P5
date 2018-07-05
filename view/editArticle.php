@@ -2,17 +2,12 @@
 session_start();
 require('../controller/controller.php');
 
-$updateMessage = "";
-if (!empty($_POST['articleTitle']) && !empty($_POST['articleContent'])) {
-    updateArticle($_POST['articleTitle'], $_POST['articleContent'], $_GET['id']);
-    $updateMessage = "L'article numéro ".$_GET['id']." a bien été mis à jour";
-}
-
 $article = showArticle($_GET['id']);
 $author = getAuthor($_GET['id']);
 
 $title = "Edition de l'Article";
 include("../view/blogHeader.php");
+$_SESSION['whiteIce'] = bin2hex(random_bytes(32));
 ?>
 
 <!--
@@ -24,6 +19,7 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
+                <?= isset($_SESSION['username'])? ('<p>Vous êtes identifier en tant que <strong>'.$_SESSION['username'].'</strong></p>') : '' ?>
                 <h1><?= isset($article['title'])? htmlspecialchars($article['title']) :'titre' ?></h1>
                 <p class="text-center">le <?= isset($article['post_date'])? $article['post_date']: '' ?> par <?= isset($author['username'])? $author['username'] : 'inconnu' ?></p>
             </div>
@@ -35,8 +31,8 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
         </div>
         <div class="row"></br></br>
             <div class="col-lq-12 comments">
-                <form method="post" class="text-center form-group" action="editArticle.php?id=<?= $_GET['id'] ?>" method="post">
-                    <p style="color: green"><?= $updateMessage ?></p>
+                <form method="post" class="text-center form-group" action="modifArticle.php?id=<?= $_GET['id'] ?>" method="post">
+                    <p style="color: green"><?= isset($_SESSION['updateMessage'])? $_SESSION['updateMessage'] : "" ?></p>
                     <div>
                         <label for="title">Titre</label><br />
                         <input type="text" id="updateTitle" name="articleTitle" size="50" value="<?= isset($article['title'])? htmlspecialchars($article['title']) :'titre' ?>" />
@@ -47,6 +43,7 @@ Début du bloc spécifique à cette view. Tout le reste est générique et doit 
                     </div></br>
                     <div>
                         <input type="submit" />
+                        <input type="hidden" name="whiteIce" id="whiteIce" value="<?php echo $_SESSION['whiteIce']; ?>" />
                     </div>
                 </form>
                 <p><a href="adminPanel.php" class="return_index">Retour à l'administration</a></p>
