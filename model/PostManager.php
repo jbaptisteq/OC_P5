@@ -9,10 +9,10 @@ require_once("../model/Manager.php");
  */
 class PostManager extends Manager
 {
-    public function getLastSummaries()
+    public function getLastSummaries($nb = 3)
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, post_date, content FROM post ORDER BY post_date DESC LIMIT 0, 3');
+        $req = $db->query('SELECT id, title, post_date, content FROM post ORDER BY post_date DESC LIMIT 0, '.$nb);
         $summaries = $req->fetchAll();
 
         return $summaries;
