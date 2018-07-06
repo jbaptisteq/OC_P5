@@ -24,19 +24,14 @@ function listArticles()
 
 function showArticle($idArticle)
 {
-    error_log('Dans controller showArticle avec idArticle = '.$idArticle);
     $postManager = new Model\PostManager();
-//    $commentManager = new Model\CommentManager();
-
     $article = $postManager->showArticle($idArticle);
-//    $comments = $commentManager->getComments();
-    error_log('Juste avant return controller showArticle');
+
     return $article;
 }
 
 function getAuthor($idArticle)
 {
-    // $_SESSION['debug'][] = "Dans getAuthor pour article id : $idArticle";
     $postManager = new Model\PostManager();
     $author = $postManager->getAuthor($idArticle);
 
@@ -45,11 +40,9 @@ function getAuthor($idArticle)
 
 function getComments($idArticle)
 {
-    // $_SESSION['debug'][] = "Dans getComments pour article id : $idArticle";
     $postManager = new Model\PostManager();
     $comments = $postManager->getComments($idArticle);
 
-    // $_SESSION['error'][] = "ERROR RANDOM POUR GETCOMMENTS article id : $idArticle";
     return $comments;
 }
 
