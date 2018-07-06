@@ -7,17 +7,17 @@ if (isset($_POST['blueIce'])) {
     if (empty($_SESSION['blueIce'])) {
         $_SESSION['errorMessage'] = 'Erreur de session, veuillez vous reconnecter.';
         header('Location: connexion.php');
-        exit;
+        return;
     }
     if ($_SESSION['blueIce'] !== $_POST['blueIce']) {
         $_SESSION['errorMessage'] = 'Erreur de session, veuillez vous reconnecter.';
         header('Location: connexion.php');
-        exit;
+        return;
     }
     if (empty($_POST['username']) || empty($_POST['password'])) {
         $_SESSION['errorMessage'] = 'Vous n\'avez pas remplis tout les champs';
         header('Location: connexion.php');
-        exit;
+        return;
     }
     $_SESSION['usernameTest'] = $_POST['username'];
     $_SESSION['passwordTest'] = $_POST['password'];
@@ -25,5 +25,5 @@ if (isset($_POST['blueIce'])) {
 } else {
     $_SESSION['errorMessage'] = 'Erreur de session, veuillez vous reconnecter.';
     header('Location: connexion.php');
-    exit;
+    return;
 }

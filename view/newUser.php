@@ -6,11 +6,11 @@ require('../controller/controller.php');
 if (isset($_POST['purpleIce'])) {
     if (empty($_SESSION['purpleIce'])) {
         echo "Une erreur s'est produite lors de la création de votre compte.";
-        exit;
+        return;
     }
     if ($_SESSION['purpleIce'] !== $_POST['purpleIce']) {
         echo "Une erreur s'est produite lors de la création de votre compte.";
-        exit;
+        return;
     }
     if (empty($_POST['username']) ||
     empty($_POST['password']) ||

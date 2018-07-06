@@ -10,7 +10,7 @@ include("../view/header.php");
 
 if (!empty($_SESSION['username'])) {
     echo "</br></br></br></br></br></br>Vous êtes déjà connecté</br> <a href=\"adminPanel.php\">Retourner à l'administration</a>";
-    exit;
+    return;
 }
 $_SESSION['blueIce'] = bin2hex(random_bytes(32));
 ?>

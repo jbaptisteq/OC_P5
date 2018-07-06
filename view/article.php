@@ -8,7 +8,7 @@ include("../view/blogHeader.php");
 
 if (!isset($_GET['id']) || $_GET['id'] <= 0) {
     echo "Cet identifiant d'article n'existe pas.";
-    exit;
+    return;
 }
 
 $article = showArticle($_GET['id']);
