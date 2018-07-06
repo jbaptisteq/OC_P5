@@ -10,7 +10,7 @@ include("../view/blogHeader.php");
 if ($_SESSION['validated'] != 1) {
     $_SESSION['errorMessage'] = 'Vous n\'avez pas les droits suffisants pour accéder à la création d\'article.';
     echo $_SESSION['errorMessage'];
-    exit;
+    return;
 }
 $_SESSION['redIce'] = bin2hex(random_bytes(32));
 ?>

@@ -46,7 +46,7 @@ if (isset($_POST['purpleIce'])) {
     newUser($username, $pass_hash, $email);
     $_SESSION['userMessage'] = 'Votre compte à bien était créé';
     header('Location: connexion.php');
-    exit;
+    return;
 
 } else {
     header('Location: register.php');
