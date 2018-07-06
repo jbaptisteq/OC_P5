@@ -6,6 +6,7 @@ require_once('../model/UserManager.php');
 
 use P5jbq\Blog\Model as Model;
 
+
 function listSummaries()
 {
     $postManager = new Model\PostManager(); // Create Object
