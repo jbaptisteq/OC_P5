@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_id'])) {
     if (!$loginInfo) {
         $_SESSION['errorMessage'] = 'Mauvais identifiant ou mot de passe !';
         header('Location: connexion.php');
-        exit;
+        return;
     }
 
     // check password
@@ -23,14 +23,14 @@ if (!isset($_SESSION['user_id'])) {
     if (!$isPasswordCorrect) {
         $_SESSION['errorMessage'] = 'Mauvais identifiant ou mot de passe !';
         header('Location: connexion.php');
-        exit;
+        return;
     }
 
     // check administrator state
     if ($loginInfo['validated'] != 1) {
         $_SESSION['errorMessage'] = 'Vous n\'avez pas les droits suffisants pour accéder à la modération de commentaires';
         header('Location: connexion.php');
-        exit;
+        return;
     }
 
     sleep(1);
