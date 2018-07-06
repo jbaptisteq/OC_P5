@@ -45,7 +45,6 @@ if (!isset($_SESSION['user_id'])) {
     unset($_SESSION['usernameTest']);
     unset($_SESSION['passwordTest']);
 }
-
 ?>
 
 <section class="success">
