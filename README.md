@@ -5,6 +5,7 @@
  ```
  https://openclassrooms.com/paths/59-developpeur-dapplication-php-symfony
  ```
+ [![SensioLabsInsight](https://insight.sensiolabs.com/projects/31d9ccf6-7358-41f6-857b-bcbab13fd336/big.png)](https://insight.sensiolabs.com/projects/31d9ccf6-7358-41f6-857b-bcbab13fd336) 
  
 ## Languages used :
  html 5, CSS 3, Javascript, jQuery, PHP, MySQL
